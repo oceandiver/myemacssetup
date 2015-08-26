@@ -56,6 +56,10 @@
 (c-set-offset 'arglist-intro '+)
 (c-set-offset 'topmost-intro-cont '+)
 
-;; Use c-mode to edit javascript files
-;;
-(setq auto-mode-alist (append '(("\\.js$" . c-mode)) auto-mode-alist))
+(add-to-list 'auto-mode-alist '("\\.js\\'" . js-mode))
+
+(add-hook 'go-mode-hook
+          (lambda ()
+            (add-hook 'before-save-hook 'gofmt-before-save)
+            (setq tab-width 4)
+            (setq indent-tabs-mode 1)))
